@@ -2,27 +2,31 @@
 
 use Illuminate\Database\Seeder;
 
-class RoomTypeTableSeed extends Seeder
+class RoomCapacityTableSeed extends Seeder
 {
     /**
      * Run the database seeds.
      *
      * @return void
      */
-    public $table_name = 'room_types';
+    public $table_name = 'room_capacities';
 
     public function run()
     {
-        $faker = Faker\Factory::create();
-
         DB::table($this->table_name)->insert([
-            'name' => 'Delux',
+            'name' => 'Single',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         ]);
 
         DB::table($this->table_name)->insert([
-            'name' => 'Standard',
+            'name' => 'Double',
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s'),
+        ]);
+
+        DB::table($this->table_name)->insert([
+            'name' => 'Family',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         ]);
