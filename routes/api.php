@@ -19,3 +19,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('hotel', 'HotelsController@index')->name('hotel_details');
 Route::put('hotel/{hotel}', 'HotelsController@update');
+
+Route::resource('roomtype', 'RoomTypesController');

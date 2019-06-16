@@ -93,7 +93,7 @@ class HotelsController extends Controller
      */
     public function update(Request $request, $hotel)
     {
-        $validatedData = $request->validate([
+        $request->validate([
             'name' => 'required',
             'address' => 'required',
             'city' => 'required',
