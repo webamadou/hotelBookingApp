@@ -19,8 +19,8 @@ class CreateHotelsTable extends Migration
             $table->string('city');
             $table->string('state');
             $table->string('country');
-            $table->string('zip_code');
-            $table->string('phone_number')->default(null);
+            $table->string('zip_code')->default(null);
+            $table->string('phone_number');
             $table->string('email');
             $table->string('image')->default(null);
             $table->timestamps();
