@@ -16,7 +16,7 @@ class RoomTypesController extends Controller
     {
         $roomTypes = RoomType::all();
 
-        return $roomTypes->toJson();
+        return view('roomtypes.index', compact('roomTypes'));
     }
 
     /**
@@ -26,7 +26,7 @@ class RoomTypesController extends Controller
      */
     public function create()
     {
-        //
+        return view('roomtypes.create');
     }
 
     /**
@@ -43,7 +43,7 @@ class RoomTypesController extends Controller
 
         $roomTypes = RoomType::create(['name' => $validatedData['name']]);
 
-        return response()->json(['STATUS'=>200, 'MESSAGE'=>'Data saved', 'data'=> $roomTypes],200);
+        return redirect('/dashboard/roomtype')->with('success', 'A new Room Type has been saved');
     }
 
     /**
@@ -56,7 +56,7 @@ class RoomTypesController extends Controller
     {
         $roomType = RoomType::find($id);
 
-        return $roomType->toJson();
+        return view('roomtypes.show', compact('roomType'));
     }
 
     /**
@@ -67,7 +67,8 @@ class RoomTypesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $roomType = RoomType::find($id);
+        return view('roomtypes.edit', compact('roomType'));
     }
 
     /**
@@ -85,7 +86,7 @@ class RoomTypesController extends Controller
         $roomType = RoomType::find($id);
         $roomType->update($request->all());
 
-        return response()->json(['STATUS'=>200, 'MESSAGE'=>'Data updated','data' => $roomType], 200);
+        return redirect('dashboard/roomtype/'.$id)->with('success','Room Type Updated');
     }
 
     /**
@@ -97,7 +98,9 @@ class RoomTypesController extends Controller
     public function destroy($id)
     {
         $roomType = RoomType::find($id);
-        $roomType->delete();
-        return response()->json(['STATUS'=>200, 'MESSAGE'=>'Item deleted']);
+        if($roomType)
+            {$roomType->delete();}
+
+        return redirect('dashboard/roomtype')->with('success','Room type deleted');
     }
 }

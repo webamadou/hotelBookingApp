@@ -17,4 +17,10 @@
 */
 //Route::view('/{path?}', 'app');
 
-Route::resource('room', 'RoomsController');
+Route::prefix('dashboard')->group(function(){
+    Route::resource('hotel', 'HotelsController', ['only' => ['index','edit','update']]);
+    Route::resource('room', 'RoomsController');
+    Route::resource('roomtype', 'RoomTypesController');
+    Route::resource('roomcapacity', 'RoomCapacitiesController');
+});
+

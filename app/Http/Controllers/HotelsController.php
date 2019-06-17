@@ -16,7 +16,7 @@ class HotelsController extends Controller
     {
         $hotels = Hotel::first();
 
-        return $hotels->toJson();
+        return view('hotel.index', compact('hotels'));
     }
 
     /**
@@ -79,9 +79,10 @@ class HotelsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Hotel $hotel)
+    public function edit(Hotel $id)
     {
-        //
+        $hotel = Hotel::first();
+        return view('hotel.edit', compact('hotel'));
     }
 
     /**
@@ -105,6 +106,7 @@ class HotelsController extends Controller
         $hotel = Hotel::find($hotel);
         $hotel->update($request->all());
 
+        return redirect('dashboard/hotel')->with('success',"Hotel's details updated!");
         return response()->json(['STATUS'=>200, 'MESSAGE'=>'Data saved','data' => $hotel], 200);
     }
 

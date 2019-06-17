@@ -131,7 +131,9 @@ class RoomsController extends Controller
     public function destroy($id)
     {
         $room = Room::find($id);
-        $room->delete();
+        if($room) {
+            $room->delete();
+        }
 
         return redirect('/room')->with('success', 'Room has been deleted Successfully');
     }

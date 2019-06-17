@@ -16,7 +16,7 @@ class RoomCapacitiesController extends Controller
     {
         $roomCapacities = RoomCapacity::all();
 
-        return $roomCapacities->toJson();
+        return view('roomcapacity.index', compact('roomCapacities'));
     }
 
     /**
@@ -26,7 +26,7 @@ class RoomCapacitiesController extends Controller
      */
     public function create()
     {
-        //
+        return view('roomcapacity.create');
     }
 
     /**
@@ -43,7 +43,7 @@ class RoomCapacitiesController extends Controller
 
         $roomCapacity = RoomCapacity::create(['name' => $validatedData['name']]);
 
-        return response()->json(['STATUS'=>200, 'MESSAGE'=>'Data saved', 'data'=> $roomCapacity],200);
+        return redirect('/dashboard/roomcapacity')->with('success','A new Room Capacity has been saved');
     }
 
     /**
@@ -56,7 +56,7 @@ class RoomCapacitiesController extends Controller
     {
         $roomCapacity = RoomCapacity::find($id);
 
-        return $roomCapacity->toJson();
+        return view('roomcapacity.show', compact('roomCapacity'));
     }
 
     /**
@@ -67,7 +67,8 @@ class RoomCapacitiesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $roomCapacity = RoomCapacity::find($id);
+        return view('roomcapacity.edit', compact('roomCapacity'));
     }
 
     /**
@@ -85,7 +86,7 @@ class RoomCapacitiesController extends Controller
         $roomCapacity = RoomCapacity::find($id);
         $roomCapacity->update($request->all());
 
-        return response()->json(['STATUS'=>200, 'MESSAGE'=>'Data updated','data' => $roomCapacity], 200);
+        return redirect('dashboard/roomcapacity/'.$id)->with('success','Room Capacity Updated');
     }
 
     /**
@@ -97,7 +98,9 @@ class RoomCapacitiesController extends Controller
     public function destroy($id)
     {
         $roomCapacity = RoomCapacity::find($id);
-        $roomCapacity->delete();
-        return response()->json(['STATUS'=>200, 'MESSAGE'=>'Item deleted']);
+        if($roomCapacity)
+            {$roomCapacity->delete();}
+
+        return redirect('dashboard/roomcapacity')->with('success','Room Capacity Deleted');
     }
 }
