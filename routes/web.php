@@ -22,5 +22,6 @@ Route::prefix('dashboard')->group(function(){
     Route::resource('room', 'RoomsController');
     Route::resource('roomtype', 'RoomTypesController');
     Route::resource('roomcapacity', 'RoomCapacitiesController');
+    Route::resource('price', 'PricesController');
 });
 

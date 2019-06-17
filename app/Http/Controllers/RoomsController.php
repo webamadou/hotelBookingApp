@@ -69,7 +69,7 @@ class RoomsController extends Controller
         #$roomTypes = RoomType::create(['name' => $validatedData['name']]);
 
         #return response()->json(['STATUS'=>200, 'MESSAGE'=>'Data saved', 'data'=> $room, 'path' => public_path()],200);
-        return redirect('/room')->with('success', 'A New Room has been added');
+        return redirect('dashboard/room')->with('success', 'A New Room has been added');
     }
 
     /**
@@ -119,7 +119,7 @@ class RoomsController extends Controller
         $room->roomCapacity_id = $request->get('roomCapacity_id');
         $room->save();
 
-        return redirect('/room')->with('success', 'Room updated');
+        return redirect('dashboard/room')->with('success', 'Room updated');
     }
 
     /**
@@ -135,6 +135,6 @@ class RoomsController extends Controller
             $room->delete();
         }
 
-        return redirect('/room')->with('success', 'Room has been deleted Successfully');
+        return redirect('dashboard/room')->with('success', 'Room has been deleted Successfully');
     }
 }

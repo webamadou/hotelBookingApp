@@ -22,7 +22,6 @@
                 <br><br>
                 <p><a href="{{route('hotel.edit',$hotels->id)}}" class="btn btn-primary">Edit</a></p>
             </div>
-
         </div>
     </div>
 </div>
