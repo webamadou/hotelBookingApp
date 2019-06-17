@@ -23,3 +23,5 @@ Route::put('hotel/{hotel}', 'HotelsController@update');
 Route::resource('roomtype', 'RoomTypesController');
 
 Route::resource('roomcapacity', 'RoomCapacitiesController');
+
+Route::resource('room', 'RoomsController');

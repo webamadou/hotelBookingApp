@@ -8,10 +8,10 @@ class Room extends Model
 {
     //Room belongs to a roomType
     public function roomType(){
-        return $this->belongsTo(RoomType::class);
+        return $this->belongsTo('App\RoomType', 'roomType_id');
     }
     //Room belongs to a room capacity
     public function roomCapacity(){
-        return $this->belongsTo(RoomCapacity::class);
+        return $this->belongsTo("App\RoomCapacity", "roomCapacity_id");
     }
 }
