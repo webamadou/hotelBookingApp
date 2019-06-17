@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
+use App\Customer;
 use Illuminate\Http\Request;
 
-class UsersController extends Controller
+class CustomersController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +14,9 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $users = User::orderBy('created_at')->get();
+        $customers = Customer::orderBy('created_at', 'desc')->get();
 
-        return view('user.index', compact('users'));
+        return view('customer.index', compact('customers'));
     }
 
     /**
@@ -26,7 +26,7 @@ class UsersController extends Controller
      */
     public function create()
     {
-        return view('user.create');
+        return view('customer.create');
     }
 
     /**
@@ -48,18 +48,18 @@ class UsersController extends Controller
         ]) ;
         #dd($request->file('image'));
 
-        $user = new User();
-        $user->email = $validatedData['email'] ;
-        $user->first_name = $validatedData['first_name'];
-        $user->last_name = $validatedData['last_name'];
-        $user->address = $validatedData['address'];
-        $user->city = $validatedData['city'];
-        $user->country = $validatedData['country'];
-        $user->phone = $validatedData['phone'];
+        $customer = new Customer();
+        $customer->email = $validatedData['email'] ;
+        $customer->first_name = $validatedData['first_name'];
+        $customer->last_name = $validatedData['last_name'];
+        $customer->address = $validatedData['address'];
+        $customer->city = $validatedData['city'];
+        $customer->country = $validatedData['country'];
+        $customer->phone = $validatedData['phone'];
 
-        $user->save();
+        $customer->save();
 
-        return redirect('dashboard/user')->with('success', 'A New User has been added');
+        return redirect('dashboard/customer')->with('success', 'A New Customer has been added');
     }
 
     /**
@@ -70,9 +70,9 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        $user = User::find($id) ;
+        $customer = Customer::find($id) ;
 
-        return view('user.show', compact('user'));
+        return view('customer.show', compact('customer'));
     }
 
     /**
@@ -83,9 +83,9 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        $user = User::find($id) ;
+        $customer = Customer::find($id) ;
 
-        return view('user.edit', compact('user'));
+        return view('customer.edit', compact('customer'));
     }
 
     /**
@@ -108,18 +108,18 @@ class UsersController extends Controller
         ]) ;
         #dd($request->file('image'));
 
-        $user = User::find($id);
-        $user->email = $validatedData['email'] ;
-        $user->first_name = $validatedData['first_name'];
-        $user->last_name = $validatedData['last_name'];
-        $user->address = $validatedData['address'];
-        $user->city = $validatedData['city'];
-        $user->country = $validatedData['country'];
-        $user->phone = $validatedData['phone'];
+        $customer = Customer::find($id);
+        $customer->email = $validatedData['email'] ;
+        $customer->first_name = $validatedData['first_name'];
+        $customer->last_name = $validatedData['last_name'];
+        $customer->address = $validatedData['address'];
+        $customer->city = $validatedData['city'];
+        $customer->country = $validatedData['country'];
+        $customer->phone = $validatedData['phone'];
 
-        $user->save();
+        $customer->save();
 
-        return redirect('dashboard/user')->with('success', 'A New User has been updated');
+        return redirect('dashboard/customer')->with('success', 'A New Customer has been updated');
     }
 
     /**
@@ -130,11 +130,11 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        $user = User::find($id);
-        if($user){
-            $user->delete();
+        $customer = Customer::find($id);
+        if($customer){
+            $customer->delete();
         }
 
-        return redirect('dashboard/user')->with('success', 'User Deleted!');
+        return redirect('dashboard/customer')->with('success', 'User Deleted!');
     }
 }
