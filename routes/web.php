@@ -27,5 +27,6 @@ Route::prefix('dashboard')->group(function(){
     Route::resource('customer', 'CustomersController');
     Route::resource('booking', 'BookingsController', ['except' => ['create','store']]);
     Route::post('search_booking', 'BookingsController@search_booking')->name('booking.search');
+    Route::get('calendar', 'BookingsController@calendar')->name('booking.calendar');
 });
 

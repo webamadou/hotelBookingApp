@@ -1,3 +1,5 @@
+global.$ = global.jQuery = require('jquery');
+
 $(document).ready(function(){
    $('#price_type').change(function (e) {
        let value = $(this).val();

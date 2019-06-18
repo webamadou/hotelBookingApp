@@ -31,8 +31,9 @@
             <label for="name">Date End:</label>
             <input type="text" class="time-picker form-control" name="date_end" value="{{$booking->date_end}}"/>
         </div>
-        <button type="submit" class="btn btn-primary">Save</button>
-        <a href="{{route('user.index')}}" class="btn btn-success"> Cancel </a>
+        <button type="submit" class="btn btn-primary" autofocus>Save</button> -
+        <a href="{{route('booking.index')}}" class="btn btn-success"> Cancel </a>
+        <a href="{{route('booking.calendar')}}" class="btn btn-success"> Go To Calendar </a>
         {!! Form::close() !!}
         </form>
     </div>

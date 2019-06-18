@@ -1,8 +1,6 @@
 @extends('layout')
 
 @section('content')
-<a href="{{ route('roomcapacity.create')}}" class="btn btn-primary">Add A Room Capacity</a>
-
 @if(session()->get('success'))
 <div class="alert alert-success">
     {{ session()->get('success') }}

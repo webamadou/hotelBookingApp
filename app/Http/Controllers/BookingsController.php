@@ -21,6 +21,11 @@ class BookingsController extends Controller
         return view('booking.index', compact('bookings'));
     }
 
+    public function calendar(){
+        $bookings = Booking::orderBy('created_at')->with('room','customer')->get();
+
+        return view('booking.calendar', compact('bookings'));
+    }
     /**
      * Display a listing of the resource base on a given range date.
      *
