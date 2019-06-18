@@ -15,7 +15,7 @@
     return view('welcome');
 });
 */
-//Route::view('/{path?}', 'app');
+Route::view('/{path?}', 'app');
 
 Route::prefix('dashboard')->group(function(){
     Route::resource('hotel', 'HotelsController', ['only' => ['index','edit','update']]);
