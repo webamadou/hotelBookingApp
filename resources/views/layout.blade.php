@@ -31,7 +31,11 @@
 
 <script src="{{ asset('js/dashboard.scripts.js') }}"></script>
 <script>
-    $('.time-picker').datetimepicker();
+    $('.time-picker').datetimepicker({
+        inline: true,
+        sideBySide: true,
+        format: 'YYYY-MM-DD'
+    });
 </script>
 </body>
 </html>

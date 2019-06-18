@@ -11,10 +11,8 @@ $factory->define(Price::class, function (Faker $faker) {
     $start_date = $end_date = null;
     $roomType = $roomCapacity = 0;
     if($price_type > 0){//Means price is set to be dynamic
-        //We define start date = today plus 7 to 15 days
-        $start_date = date('Y-m-d H:i:s', strtotime($date. rand(7, 15)));
-        //We define end date = today + 20 to 31 days
-        $end_date = date('Y-m-d H:i:s', strtotime($date. rand(20, 31)));
+        $start_date = $faker->dateTimeInInterval($startDate = '+1 years', $interval = '+ 5 days', $timezone = null);
+        $end_date = $faker->dateTimeInInterval($startDate = '+1 years', $interval = '+ 5 days', $timezone = null);
     } else {
         $roomType = \App\RoomType::all()->random(1)->first();
         $roomCapacity = \App\RoomCapacity::all()->random(1)->first();
