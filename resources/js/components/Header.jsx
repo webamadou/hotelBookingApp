@@ -23,9 +23,10 @@ const Header = () => (
                     Pricing
                 </a>
             </nav>
-            <a className="btn btn-outline-primary" href="#">
-                Sign up
-            </a>
+            <button
+                style={{ padding: 10, backgroundColor: "red", color: "white" }}
+                onClick={this.props.logoutUser}
+            />
         </div>
     </nav>
 );

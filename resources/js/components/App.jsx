@@ -4,12 +4,10 @@ import { BrowserRouter, Route, Switch, withRouter } from "react-router-dom";
 import BookingForm from "./BookingForm";
 import Login from "./Login";
 import Register from "./Register";
-import Header from './Header';
-
+import Header from "./Header";
 
 import axios from "axios";
 import $ from "jquery";
-
 
 class App extends React.Component {
     constructor(props) {
@@ -21,14 +19,11 @@ class App extends React.Component {
         this._loginUser = this._loginUser.bind(this);
         this._registerUser = this._registerUser.bind(this);
         this._logoutUser = this._logoutUser.bind(this);
-
     }
-    _loginUser(email, password){
+    _loginUser(email, password) {
         $("#login-form button")
             .attr("disabled", "disabled")
-            .html(
-                '<span class="sr-only">Loading...</span>'
-            );
+            .html('<span class="sr-only">Loading...</span>');
         let formData = new FormData();
         formData.append("email", email);
         formData.append("password", password);
@@ -37,10 +32,17 @@ class App extends React.Component {
             .post("http://localhost:8000/api/user/login/", formData)
             .then(response => {
                 return response;
-            }).then(json => {
+            })
+            .then(json => {
                 if (json.data.success) {
                     //alert("Login Successful!");
-                    const { name, id, email, auth_token } = json.data.data;
+                    const {
+                        name,
+                        id,
+                        email,
+                        auth_token,
+                        url_server
+                    } = json.data.data;
 
                     let userData = {
                         name,
@@ -64,15 +66,16 @@ class App extends React.Component {
                 $("#login-form button")
                     .removeAttr("disabled")
                     .html("Login");
-            }).catch(error => {
+            })
+            .catch(error => {
                 console.log(`An Error Occured! ${error}`);
                 $("#login-form button")
                     .removeAttr("disabled")
                     .html("Login");
             });
-    };
+    }
 
-    _registerUser(email, password){
+    _registerUser(email, password) {
         $("#email-login-btn")
             .attr("disabled", "disabled")
             .html('</i><span class="sr-only">Loading...</span>');
@@ -90,7 +93,12 @@ class App extends React.Component {
             .then(json => {
                 if (json.data.success) {
                     alert(`Registration Successful!`);
-                    const {id, email, auth_token } = json.data.data;
+                    const {
+                        id,
+                        email,
+                        auth_token,
+                        url_server
+                    } = json.data.data;
                     let userData = {
                         id,
                         email,
@@ -123,9 +131,9 @@ class App extends React.Component {
                     .removeAttr("disabled")
                     .html("Register");
             });
-    };
+    }
 
-    _logoutUser(){
+    _logoutUser() {
         let appState = {
             isLoggedIn: false,
             user: {}
@@ -133,7 +141,7 @@ class App extends React.Component {
         // save app state with user date in local storage
         localStorage["appState"] = JSON.stringify(appState);
         this.setState(appState);
-    };
+    }
 
     componentDidMount() {
         let state = localStorage["appState"];
@@ -160,29 +168,34 @@ class App extends React.Component {
         }
         return (
             <Switch data="data">
-                    <Route
-                        exact
-                        path="/"
-                        render={props => (
-                            <BookingForm
-                                {...props}
-                                logoutUser={this._logoutUser}
-                                user={this.state.user}
-                            />
-                        )}
-                    />
+                <Route
+                    exact
+                    path="/"
+                    render={props => (
+                        <BookingForm
+                            {...props}
+                            logoutUser={this._logoutUser}
+                            user={this.state.user}
+                        />
+                    )}
+                />
 
-                    <Route
-                        path="/login"
-                        render={props => <Login {...props} loginUser={this._loginUser} />}
-                    />
+                <Route
+                    path="/login"
+                    render={props => (
+                        <Login {...props} loginUser={this._loginUser} />
+                    )}
+                />
 
-                    <Route
-                        path="/register"
-                        render={props => (
-                            <Register {...props} registerUser={this._registerUser} />
-                        )}
-                    />
+                <Route
+                    path="/register"
+                    render={props => (
+                        <Register
+                            {...props}
+                            registerUser={this._registerUser}
+                        />
+                    )}
+                />
             </Switch>
         );
     }

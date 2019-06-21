@@ -25,11 +25,13 @@ Route::group(['middleware' => ['jwt.auth','api-header']], function () {
         $response = ['success'=>true, 'data'=>$users];
         return response()->json($response, 201);
     });*/
-    Route::get('hotel', 'HotelsController@index')->name('hotel_details');
+    Route::get('reservations/roomTypeList', 'ReservationsController@roomTypeList');
+    Route::get('reservations/roomsList/{room_type}', 'ReservationsController@roomsList');
+/*    Route::get('hotel', 'HotelsController@index')->name('hotel_details');
     Route::put('hotel/{hotel}', 'HotelsController@update');
     Route::resource('roomtype', 'RoomTypesController');
     Route::resource('roomcapacity', 'RoomCapacitiesController');
-    Route::resource('room', 'RoomsController');
+    Route::resource('room', 'RoomsController');*/
 
 });
 

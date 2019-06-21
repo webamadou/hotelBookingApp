@@ -169,7 +169,14 @@ class UsersController extends Controller
             $token = self::getToken($request->email, $request->password);
             $user->auth_token = $token;
             $user->save();
-            $response = ['success'=>true, 'data'=>['id'=>$user->id,'auth_token'=>$user->auth_token,'name'=>$user->name, 'email'=>$user->email]];
+            $response = ['success'=>true, 'data'=>[
+                                                    'id'=>$user->id,
+                                                    'auth_token'=>$user->auth_token,
+                                                    'name'=>$user->name,
+                                                    'email'=>$user->email,
+                                                    'url_server'=>url('/'),
+                                                ]
+                        ];
         }
         else
             $response = ['success'=>false, 'data'=>'Record doesnt exists'];
@@ -199,7 +206,14 @@ class UsersController extends Controller
 
             $user->save();
 
-            $response = ['success'=>true, 'data'=>['name'=>$user->name,'id'=>$user->id,'email'=>$request->email,'auth_token'=>$token]];
+            $response = ['success'=>true, 'data'=>[
+                                                    'name'=>$user->name,
+                                                    'id'=>$user->id,
+                                                    'email'=>$request->email,
+                                                    'auth_token'=>$token,
+                                                    'url_server'=>url('/'),
+                                                    ]
+                        ];
         }
         else
             $response = ['success'=>false, 'data'=>'Couldnt register user'];

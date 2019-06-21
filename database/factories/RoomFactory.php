@@ -19,9 +19,9 @@ $factory->define(Room::class, function (Faker $faker) {
     }
     #dd($roomsArray);
     return [
-        'name'       => $roomsArray[array_rand($roomsArray, 1)],
-        'roomType_id' => $roomType->id,
-        'roomCapacity_id' => $roomCapacity->id,
-        'image' => 'room_images/default.jpg'
+        'name'              => $roomsArray[array_rand($roomsArray, 1)],
+        'roomType_id'       => $roomType->id,
+        'roomCapacity_id'   => $roomCapacity->id,
+        'image'             => 'room_images/default.jpg'
     ];
 });

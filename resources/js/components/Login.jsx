@@ -20,7 +20,7 @@ const Login = ({ history, loginUser = f => f }) => {
                     <h1 className="h3 mb-3 font-weight-normal">
                         Please sign in
                     </h1>
-                    <label for="email-input" className="sr-only">
+                    <label htmlFor="email-input" className="sr-only">
                         Email address
                     </label>
                     <input
@@ -32,7 +32,7 @@ const Login = ({ history, loginUser = f => f }) => {
                         className="form-control"
                         placeholder="email"
                     />
-                    <label for="password-input" className="sr-only">
+                    <label htmlFor="password-input" className="sr-only">
                         Email address
                     </label>
                     <input
